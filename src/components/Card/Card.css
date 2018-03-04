@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css?family=Crete+Round');
+
+.card-container {
+    width: calc(33.333% - 20px);
+    box-sizing: border-box;
+    height: 400px;
+    margin: 10px;
+    position: relative;
+    perspective: 1000;
+    transform-style: preserve-3d;
+    z-index: 1;
+    transition: all .4s ease;
+}
+.card {
+    background-size: cover;
+    transition: transform .4s ease;
+    height: 100%;
+    border-radius: 10px;
+    transform: translateZ(0);
+}
+.face {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: inherit;
+    border-radius: 10px;
+}
+.backSide {
+    transform: rotateY(180deg) translateZ(0);
+}
+.rightSide {
+    transform: rotateY(90deg) translateZ(50px);
+}
+.leftSide {
+    transform: rotateY(-90deg) translateZ(50px);
+}
+.topSide {
+    transform: rotateX(90deg) translateZ(50px);
+}
+.bottomSide {
+    transform: rotateX(-90deg) translateZ(50px);
+}
+.face:not(.card) {
+    background-color: rgba(0,0,0,0.5);
+}
+/*.card-container.top.left {
+    transform: rotate3d(1, 1, 1, -5deg);
+}
+.card-container.bottom.left {
+    transform: rotate3d(1, 1, 1, 5deg);
+}
+.card-container.top.right {
+    transform: rotate3d(-1, -1, -1, -5deg);
+}
+.card-container.bottom.right {
+    transform: rotate3d(-1, -1, -1, 5deg);
+}*/
+.card-container.show-info .inside {
+    transform: rotateY(180deg);
+}
+.card-container.show-info .back {
+    transform: rotateY(0deg);
+}
+.card-container.show-info .inside {
+    /*display: none;*/
+}
+.inside,
+.back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    /*border: 1px solid #fff;*/
+    box-sizing: border-box;
+    top: 0;
+    left: 0;
+    display: block;
+    transition: all 1s linear;
+    transform-style: preserve-3d;
+}
+.back {
+    transform: rotateY(180deg);
+    background-color: rgba(0,0,0,0.3);
+}
+.inside--text {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0 10px;
+}
+.card-container:hover {
+    cursor: pointer;
+}
+.container-inside {
+    content: "";
+    background: linear-gradient(rgba(0,0,0,0), rgba(168,43,128,1));
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: all 4s linear;
+    border-radius: 10px;
+}
+.card-container:hover .container-inside {
+    background: linear-gradient(rgba(0,0,0,0), rgba(255,51,33,0.8));
+}
+.card-container:nth-of-type(2n):hover .container-inside {
+    background: linear-gradient(rgba(0,0,0,0), rgba(133,179,91,0.8));
+}
+h3 {
+    text-transform: uppercase;
+    font-size: 30px;
+    letter-spacing: 5px;
+    line-height: 1;
+}
+h3, p {
+    color: #fff;
+    position: relative;
+    z-index: 1;
+    font-family: 'Crete Round', 'Helvetica Neue', sans-serif;
+    margin: 0;
+}
+
+.card-container:not(.show-info):hover h3 {
+    font-family: 'Helvetica Neue', sans-serif;
+    letter-spacing: 1px;
+    font-size: 16px;
+    line-height: 30px;
+}
+
+.show-info h3 {
+    margin-bottom: 10px;
+}
+
+@media screen and (max-width:1500px) {
+    .card-container:nth-of-type(3n+1) {
+        padding-left: 20px;
+    }
+    .card-container:nth-of-type(3n) {
+        padding-right: 20px;
+    }
+}
